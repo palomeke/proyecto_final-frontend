@@ -10,13 +10,16 @@ const Hero = () => {
     <div className="bg-unsplashBgImage relative flex h-full items-center justify-center bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-black bg-opacity-50" />
       <div className="relative z-10 w-full max-w-[860px] text-center text-white">
-        <h1 className="text-4xl font-black md:text-5xl">FIND MY NOTES</h1>
+        <h1 className="text-4xl font-black md:text-5xl">
+          Proyecto de Gestor de Tareas
+        </h1>
         <p className="mt-5 text-sm font-light md:text-xl md:font-normal">
-          Welcome to Find My Notes – where students unite for effortless
-          organization, access, and sharing of PDF notes. Say goodbye to
-          scattered notebooks; streamline your study routine and embark on a
-          journey to academic excellence. Simplify your student life, make your
-          notes work for you – discover a new era of innovation, start today
+          Bienvenido a Find My Notes, donde los estudiantes se unen para
+          organizar, acceder y compartir fácilmente sus notas. Dile adiós a los
+          cuadernos dispersos; optimiza tu rutina de estudio y emprende un
+          camino hacia la excelencia académica. Simplifica tu vida estudiantil,
+          haz que tus notas trabajen para ti: descubre una nueva era de
+          innovación. ¡Empieza hoy!
         </p>
         <div className="mt-5">
           {/* <Link to="/search">

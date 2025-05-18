@@ -79,9 +79,9 @@ const Login = () => {
         </button>
 
         <div className="flex items-center justify-between text-sm">
-          <p>New to FindMyNotes?</p>
+          <p>Nuevo en la aplicacion?</p>
           <Link to="/signup" className="font-bold">
-            Create an account
+            Crear una cuenta
           </Link>
         </div>
       </form>
