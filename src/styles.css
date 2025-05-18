@@ -1,4 +1,13 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Modal */
+
 .ReactModalPortal > div {
   opacity: 0;
 }
@@ -45,4 +54,10 @@
 }
 .react-datetime-picker__wrapper {
   border: 0px solid gray !important;
+}
+
+.hero-bg {
+  background-image: url("/img/bgImg.jpg");
+  background-size: cover;
+  background-position: center;
 }

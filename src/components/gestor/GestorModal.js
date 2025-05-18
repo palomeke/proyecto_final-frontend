@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+// Importa React y el hook useState para manejar estados locales.
+
 import { useSelector } from "react-redux";
-import ReactDOM, { useFormState } from "react-dom";
+// Importa useSelector para acceder al estado global de Redux.
+
+//import ReactDOM, { useFormState } from "react-dom";
+// Importa ReactDOM (aunque no se usa aquí) y useFormState (que no es un export válido de react-dom, parece un error o importación innecesaria).
+
 import moment from "moment";
+// Importa moment.js para manejo de fechas.
+
 import Modal from "react-modal";
+// Importa Modal de 'react-modal' para crear modales accesibles.
+
 import DateTimePicker from "react-datetime-picker";
+// Importa DateTimePicker para seleccionar fechas y horas.
+
 import Swal from "sweetalert2";
+// Importa SweetAlert2 para mostrar alertas bonitas.
 
 const customStyles = {
   content: {
@@ -16,16 +29,29 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+// Estilos personalizados para centrar el modal en la pantalla.
+
 Modal.setAppElement("#root");
-const now = moment().minutes(0).seconds(0).add(1, "hours"); //
+// Define el elemento raíz de la app para accesibilidad (evita que lectores de pantalla lean contenido fuera del modal).
+
+const now = moment().minutes(0).seconds(0).add(1, "hours");
+// Hora actual redondeada a la siguiente hora (sin minutos ni segundos).
+
 const nowPlus1 = now.clone().add(1, "hours");
+// Una hora después de "now".
 
 export const GestorModal = () => {
   const { modalOpen } = useSelector((state) => state.ui);
+  // Obtiene desde Redux si el modal debe estar abierto o cerrado.
 
   const [dateStart, setDateStart] = useState(now.toDate());
+  // Estado local para fecha de inicio, inicializada en "now".
+
   const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+  // Estado local para fecha de fin, inicializada en "nowPlus1".
+
   const [titleValid, setTitleValid] = useState(true);
+  // Estado para controlar validación del título del evento.
 
   const [formValues, setFormValues] = useState({
     title: "Evento",
@@ -33,20 +59,25 @@ export const GestorModal = () => {
     start: now.toDate(),
     end: nowPlus1.toDate(),
   });
+  // Estado para el formulario con valores iniciales para título, notas, inicio y fin.
 
   const { notes, title, start, end } = formValues;
+  // Desestructuración para usar las variables directamente.
+
   const handleInputChange = ({ target }) => {
     setFormValues({
       ...formValues,
       [target.name]: target.value,
     });
   };
+  // Función que actualiza el estado del formulario al cambiar algún input (título o notas).
 
   const closeModal =
     () =>
     ({ target }) => {
       //CERRAR EL MODAL
     };
+  // Función para cerrar el modal. Actualmente no hace nada (falta implementar).
 
   const handleStartDateChange = (e) => {
     setDateStart(e);
@@ -55,6 +86,7 @@ export const GestorModal = () => {
       start: e,
     });
   };
+  // Actualiza la fecha de inicio tanto en el estado local como en el formulario.
 
   const handleEndDateChange = (e) => {
     setDateEnd(e);
@@ -63,24 +95,31 @@ export const GestorModal = () => {
       end: e,
     });
   };
+  // Actualiza la fecha de fin en los estados correspondientes.
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    // Previene el envío tradicional del formulario.
+
     const momentStart = moment(start);
     const momentEnd = moment(end);
+    // Convierte fechas a objetos moment para compararlas.
 
     if (momentStart.isSameOrAfter(momentEnd)) {
       Swal.fire("Error", "La fecha fin debe ser mayor a la fecha de inicio");
       return;
     }
+    // Valida que la fecha fin sea posterior a la fecha inicio, si no muestra error.
 
     if (title.trim().length < 2) {
       return setTitleValid(false);
     }
+    // Valida que el título tenga al menos 2 caracteres.
 
     //Realizar grabacion en la bd
     setTitleValid(true);
     closeModal();
+    // Aquí se debería hacer la llamada para guardar el evento y cerrar modal.
   };
 
   return (

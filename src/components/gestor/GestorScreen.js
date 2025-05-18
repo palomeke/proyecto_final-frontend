@@ -1,12 +1,15 @@
 import React from "react";
 import { Navbar } from "../ui/Navbar";
-import { GestorEvent } from "./GestorEvent";
-import { GestorModal } from "./GestorModal";
-export const GestorScreen = () => {
+import { Outlet } from "react-router-dom"; // Para renderizar las rutas hijas
+
+export const TasksScreen = () => {
   return (
-    <div className="gestor-screen">
+    <div className="tasks-screen">
       <Navbar />
-      <GestorModal />
+      <div className="container mx-auto p-4">
+        {/* Esto renderizará TaskListPage, TaskPage o ShowTask según la ruta */}
+        <Outlet />
+      </div>
     </div>
   );
 };
